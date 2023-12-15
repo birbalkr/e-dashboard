@@ -1,9 +1,14 @@
-const express = require("express");
-const path = require("path")
+const { MongoClient } = require('mongodb');
+const url ='mongodb://localhost:27017';
+const database='e-com';
+const client = new MongoClient(url);
 
-const app = express();
-const publicpath=path.join(__dirname,'public');
-app.use(express.static(publicpath));
-console.log(publicpath);
+async function getData() {
+    let result = await client.connect();
+    let db = result.db(database);
+    let collection = db.collection('products');
+    let response = await collection.find({}).toArray();
+    console.log(response);
+}
 
-app.listen(5500);
+getData();
