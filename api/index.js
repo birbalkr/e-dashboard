@@ -1,8 +1,9 @@
-const http = require('http')
-const data =require('./data')
+const express = require("express");
+const path = require("path")
 
-http.createServer((req,res)=>{
-res.writeHead(200,{'Content-Type':'application\json'});
-res.write(JSON.stringify(data));
-res.end();
-}).listen(8000);
+const app = express();
+const publicpath=path.join(__dirname,'public');
+app.use(express.static(publicpath));
+console.log(publicpath);
+
+app.listen(5500);
