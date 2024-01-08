@@ -16,5 +16,17 @@ app.post('/', async (req, rep) => {
     let result = await data.insertOne(req.body)
     rep.send(result)
 }),
+app.put('/', async (req, rep) => {
+    let data = await dbConnect();
+    let result = await data.insertOne(req.body)
+    rep.send(result)
+}),
+app.delete('/:id', async (req, res) => {
+    // let data = await dbConnect();
+    // let result = await data.insertOne(req.body)
+    // rep.send(result)
+    console.log(req.params.id);
+    res.send("done")
+}),
 
-    app.listen(5000)
+app.listen(5000)
